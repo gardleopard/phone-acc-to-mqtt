@@ -8,7 +8,7 @@ Hello gyrostuff
 <body>
 <script type="text/javascript">
 
-
+var unixtime_ms = new Date().getTime();
 
 function postControl(throttle, steering){
   var controlData = {
@@ -46,10 +46,6 @@ function setDirection(input){
 		return "neutral";
 	
 }
-function sleep(ms) {
-    var unixtime_ms = new Date().getTime();
-    while(new Date().getTime() < unixtime_ms + ms) {}
-}
 
 window.ondeviceorientation = function(event) {
   beta = Math.round(event.beta);
@@ -58,8 +54,12 @@ window.ondeviceorientation = function(event) {
   document.getElementById("gamma").innerHTML = "gamma:" + gamma;
   document.getElementById("gear").innerHTML = "gear:" + setSpeed(gamma);
   document.getElementById("direction").innerHTML = "direction:" + setDirection(beta);
-  postControl(gamma,beta);
-  sleep(200);
+  
+  if(new Date().getTime() > unixtime_ms + 200) {
+    postControl(gamma,beta);
+    unixtime_ms = new Date().getTime();
+  }
+
 }
 </script>
 <div id="beta"></div>
