@@ -1,0 +1,3 @@
+masterplan
+
+javascript -> sinatra -> mqtt -> node-red -> serial -> arduino
