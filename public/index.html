@@ -1,6 +1,11 @@
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<style type="text/css">
+	input[type=range].vertical{
+    -webkit-appearance: slider-vertical;
+}
+</style>
 <title>
 Hello gyrostuff
 </title>
@@ -66,6 +71,7 @@ window.ondeviceorientation = function(event) {
 <div id="gamma"></div>
 <div id="gear"></div>
 <div id="direction"></div>
+<input type="range" class="vertical"  value="0" min="-100" max="100" onChange="this.value=0;" oninput="console.log(this.value)">
 <button onclick="postControl(13,37)">Click me</button>
 
 <div>
