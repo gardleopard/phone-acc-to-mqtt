@@ -1,6 +1,7 @@
 <html>
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/application.js"></script>
 <style type="text/css">
 	input[type=range].vertical{
     -webkit-appearance: slider-vertical;
@@ -15,21 +16,7 @@ Hello gyrostuff
 
 var unixtime_ms = new Date().getTime();
 
-function postControl(throttle, steering){
-  var controlData = {
-    "throttle": throttle,
-    "steering": steering
-  };
-  $.ajax({
-    url: "/api/control",
-    type: "POST",
-    dataType: "json",
-    contentType: "application/json",
-    data: JSON.stringify(controlData),
-    async: false,
-  });
 
-}
 function setSpeed(input){
 	if(input > 10){
 		return "forward";
@@ -73,7 +60,7 @@ window.ondeviceorientation = function(event) {
 <div id="direction"></div>
 <input type="range" class="vertical"  value="0" min="-100" max="100" onChange="this.value=0;" oninput="console.log(this.value)">
 <button onclick="postControl(13,37)">Click me</button>
-
+<a href="thumbthrottle.html">THUMBTHROTTLE</a>
 <div>
 beta er svinging 0 er sentrert - er til venstre og + til høyre. verdier fra -80-0-80 er valid <br/>
 gamma er forover 0 er midten. verdier fra -80-0-80 er valid

@@ -1,0 +1,35 @@
+<html>
+<head>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/application.js"></script>
+<style type="text/css">
+	input[type=range].vertical{
+    -webkit-appearance: slider-vertical;
+}
+</style>
+<title>
+Thumbspeed</title>
+</head>
+<body>
+<script type="text/javascript">
+var direction = 0;
+var speed = 0;
+function updateControlData(){
+	if(new Date().getTime() > unixtime_ms + 200) {
+    postControl(speed,direction);
+    unixtime_ms = new Date().getTime();
+  }
+}
+var unixtime_ms = new Date().getTime();
+window.ondeviceorientation = function(event) {
+  direction = Math.round(event.beta);
+  updateControlData();
+  
+
+}
+</script>
+<input type="range" class="vertical"  value="0" min="-100" max="100" onChange="this.value=0; speed = this.value; updateControlData();" oninput="speed = this.value; updateControlData(); ">
+
+</body>
+
+</html>

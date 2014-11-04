@@ -14,4 +14,5 @@ post '/api/control' do
     control_data = JSON.parse request.body.read
   	mqtt_client.publish('throttle', control_data["throttle"])
   	mqtt_client.publish('steering', control_data["steering"])
+    mqtt_client.publish('control', "T#{control_data["throttle"]}S#{control_data["steering"]}")
 end
